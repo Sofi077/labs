@@ -3,25 +3,28 @@ plugins {
     id 'jacoco'
 }
 jacoco {
-    toolVersion = "0.8.7" // Вкажіть актуальну версію Jacoco
+    toolVersion = "0.8.7"
 }
-group = 'org.example'
-version = '1.0-SNAPSHOT'
+group 'org.fpm'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 17
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    // https://mvnrepository.com/artifact/javax.inject/javax.inject
+    implementation group: 'javax.inject', name: 'javax.inject', version: '1'
+    implementation 'junit:junit:4.13.1'
 
+
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
-
 test {
-    useJUnitPlatform()
+    useJUnit()
 }
-
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
 }
