@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+jacoco {
+    toolVersion = "0.8.7"
+}
+group 'org.fpm'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 17
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/javax.inject/javax.inject
+    implementation group: 'javax.inject', name: 'javax.inject', version: '1'
+    implementation 'junit:junit:4.13.1'
+
+
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
+test {
+    useJUnit()
+}
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
